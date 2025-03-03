@@ -2,11 +2,13 @@
 
 ## 📌 Introduction (소개)
 
-While studying C programming at university, I realized that we rarely get to use it in real-world applications. Many courses focus on calling C system functions from C++ or other languages rather than writing pure C programs.
+While studying C programming at university, I realized that we rarely get to use it in real-world applications. 
+Many courses focus on calling C system functions from C++ or other languages rather than writing pure C programs.
 
 One day, I thought: *What if I split a binary data into two different datas: bit count, and bit order.*
 (as a result, bit order would be: 010101010... or 10101010...)
-Interestingly, I later discovered that my approach was essentially a form of Run-Length Encoding (RLE). Despite this, common algorithms like BFS are often included in portfolios, so I believe this project effectively demonstrates fundamental knowledge of my major.
+Interestingly, I later discovered that my approach was essentially a form of Run-Length Encoding (RLE). 
+Despite this, common algorithms like BFS are often included in portfolios, so I believe this project effectively demonstrates fundamental knowledge of my major.
 Also basic obfuscations are provided, so it wouldn't be bad.
 
 I hope this program helps beginners like me get a better grasp of programming concepts.
@@ -18,7 +20,8 @@ I hope this program helps beginners like me get a better grasp of programming co
 그러던 중, *파일의 데이터를 비트 수와 나열 순서로 나누면 어떨까* 라는 아이디어에서 출발하여 Essosplit을 개발했습니다.
 (아마 결과는 010101010...아니면 10101010...이겠죠.)
 
-나중에 보니 이 방식이 사실상 Run-Length Encoding (RLE)과 동일하다는 걸 깨달았지만, 흔한 알고리즘인 BFS 같은 것도 포트폴리오에 포함하는 걸 보면, 이 프로그램도 전공 지식을 보여주는 데 충분히 가치가 있다고 생각했습니다.
+나중에 보니 이 방식이 사실상 Run-Length Encoding (RLE)과 동일하다는 걸 깨달았지만, 
+흔한 알고리즘인 BFS 같은 것도 포트폴리오에 포함하는 걸 보면, 이 프로그램도 전공 지식을 보여주는 데 충분히 가치가 있다고 생각했습니다.
 기초적인 난독화 또한 있으니 나쁘지 않은 선택이겠죠.
 
 이 프로그램이 저와 같은 프로그래밍 입문자들에게 도움이 되었으면 좋겠습니다.
