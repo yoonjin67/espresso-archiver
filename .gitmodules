@@ -1,0 +1,6 @@
+[submodule "gperftools"]
+	path = gperftools
+	url = https://github.com/gperftools/gperftools
+[submodule "zlib"]
+	path = zlib
+	url = https://github.com/madler/zlib

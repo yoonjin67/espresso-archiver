@@ -1,4 +1,4 @@
-#include "coffee.h"
+#include "espresso_zip.h"
 #include <sys/stat.h>
 
 FILE *original_file_open(const char *fname, const char *mode) {

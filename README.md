@@ -1,10 +1,13 @@
-# Essosplit: RLE Variant File Split & Obfuscation Program
+# Espresso Archiver: RLE Variant Obfuscation Program
 
 ## 📌 Introduction (소개)
 
 While studying C programming at university, I realized that we rarely get to use it in real-world applications. Many courses focus on calling C system functions from C++ or other languages rather than writing pure C programs.
 
-One day, I thought: *What if I split a file in such a way that it appears broken at first glance?* This led me to develop Essosplit. Interestingly, I later discovered that my approach was essentially a form of Run-Length Encoding (RLE). Despite this, common algorithms like BFS are often included in portfolios, so I believe this project effectively demonstrates fundamental knowledge of my major.
+One day, I thought: *What if I split a binary data into two different datas: bit count, and bit order.*
+(as a result, bit order would be: 010101010... or 10101010...)
+Interestingly, I later discovered that my approach was essentially a form of Run-Length Encoding (RLE). Despite this, common algorithms like BFS are often included in portfolios, so I believe this project effectively demonstrates fundamental knowledge of my major.
+Also basic obfuscations are provided, so it wouldn't be bad.
 
 I hope this program helps beginners like me get a better grasp of programming concepts.
 
@@ -12,45 +15,49 @@ I hope this program helps beginners like me get a better grasp of programming co
 
 대학에서 C 언어를 배우면서, 실제로 활용할 기회가 적고 C 시스템 함수를 C++ 등에서 호출하는 실습이 많다는 점을 느꼈습니다.
 
-그러던 중, *파일을 분할하면 마치 깨진 것처럼 보이지 않을까?* 라는 아이디어에서 출발하여 Essosplit을 개발했습니다.
+그러던 중, *파일의 데이터를 비트 수와 나열 순서로 나누면 어떨까* 라는 아이디어에서 출발하여 Essosplit을 개발했습니다.
+(아마 결과는 010101010...아니면 10101010...이겠죠.)
 
 나중에 보니 이 방식이 사실상 Run-Length Encoding (RLE)과 동일하다는 걸 깨달았지만, 흔한 알고리즘인 BFS 같은 것도 포트폴리오에 포함하는 걸 보면, 이 프로그램도 전공 지식을 보여주는 데 충분히 가치가 있다고 생각했습니다.
+기초적인 난독화 또한 있으니 나쁘지 않은 선택이겠죠.
 
 이 프로그램이 저와 같은 프로그래밍 입문자들에게 도움이 되었으면 좋겠습니다.
 
 ---
 
+## 🛠 Installation & Usage | 설치 및 사용법
+
+
+### 🔹 Build | 빌드
+
+요구 라이브러리(required library): zlib, gperftools
+
+```sh
+make
+```
+
 ## 🛠 How to Use (사용법)
 
-### 🔹 Split a file (파일 분할)
+### 🔹 Encode & Compress | 변형 및 압축
+
 
 ```sh
-./brewer testfile.extension
+./eszip myfile.bin
 ```
 
-This will generate two output files:
+This will generate an archive:
 
-- `testfile.extension.water`
-- `testfile.extension.bean`
+- `myfile.bin.ezip`
 
-파일을 두 개로 분할하여 저장합니다:
+압축파일은 다음과 같습니다:
 
-- `testfile.extension.water`
-- `testfile.extension.bean`
+- `myfile.bin.ezip`
 
-### 🔹 Recover a file (파일 복원)
+### 🔹 Extract | 압축 해제
 
 ```sh
-./recover testfile.extension
+./esunzip testfile.extension
 ```
-
-This will restore the original file as:
-
-- `testfile.extension.recover`
-
-복원된 파일은 다음과 같이 저장됩니다:
-
-- `testfile.extension.recover`
 
 ---
 
@@ -58,29 +65,35 @@ This will restore the original file as:
 
 Essosplit follows a simple RLE-like approach:
 
-1. It scans the file and detects consecutive identical bytes.
-2. The byte values are stored in the `*.water` file.
-3. The repetition counts are stored in the `*.bean` file.
-4. During recovery, both files are read and reconstructed into the original format.
+1. XOR encryption → XOR conversion with key A
+2. apply bit negation (NOT operation)
+3. apply Bit Shift operation → Shuffle data
+4. encrypt XOR with key B
+4. finally compress (zlib Deflate) and save with *.ezip extension
 
 Essosplit은 단순한 RLE 변형 방식으로 동작합니다:
 
-1. 파일을 읽으며 연속된 동일한 바이트를 찾습니다.
-2. 바이트 값은 `*.water` 파일에 저장됩니다.
-3. 반복 횟수는 `*.bean` 파일에 저장됩니다.
-4. 복원 과정에서는 두 파일을 읽어 원본 파일을 재구성합니다.
+
+1. XOR 암호화 → 키 A를 이용해 XOR 변환
+2. 비트 부정 (NOT 연산) 적용
+3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
+4. 키 B로 XOR 암호화
+4. 최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
+
 
 ---
 
 ## 📌 Why Use Essosplit? (Essosplit의 특징)
 
-✅ **Simple yet effective obfuscation** - The split files appear broken, making casual inspection difficult.
+✅ **Simple yet effective obfuscation** - The split files appear broken, making casual inspection difficult. Combining XOR, NOT, and Bit Shift provides adequate security.
 
 ✅ **Lightweight and fast** - Since it follows RLE principles, the processing is quick.
 
 ✅ **Easy to understand** - Great for beginners learning about file manipulation.
 
-✅ **간단하지만 효과적인 난독화** - 분할된 파일은 깨진 것처럼 보이므로 단순한 확인으로는 원본을 알기 어렵습니다.
+✅ **간단하지만 효과적인 난독화** - 분할된 파일은 깨진 것처럼 보이므로 단순한 확인으로는 원본을 알기 어렵습니다. XOR, NOT, Bit Shift가 합리적인 보안을 제공합니다.
+
+✅ **XOR, NOT, Bit Shift 조합으로 데이터 흐트리기** 단순하지만 합리적인 수준의 보안을 제공합니다.
 
 ✅ **가볍고 빠름** - RLE 원리를 따르므로 처리 속도가 빠릅니다.
 
