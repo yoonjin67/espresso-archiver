@@ -66,7 +66,7 @@ This will generate an archive:
 
 ## 🔍 How It Works (작동 방식)
 
-Essosplit follows a simple RLE-like approach:
+Espresso Zip follows a simple RLE-like approach:
 
 1. XOR encryption → XOR conversion with key A
 2. apply bit negation (NOT operation)
