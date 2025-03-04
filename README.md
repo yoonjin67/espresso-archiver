@@ -74,7 +74,7 @@ Essosplit follows a simple RLE-like approach:
 4. encrypt XOR with key B
 4. finally compress (zlib Deflate) and save with *.ezip extension
 
-Essosplit은 단순한 RLE 변형 방식으로 동작합니다:
+Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
 
 
 1. XOR 암호화 → 키 A를 이용해 XOR 변환
@@ -88,15 +88,14 @@ Essosplit은 단순한 RLE 변형 방식으로 동작합니다:
 
 ## 📌 Why Use Essosplit? (Essosplit의 특징)
 
-✅ **Simple yet effective obfuscation** - The split files appear broken, making casual inspection difficult. Combining XOR, NOT, and Bit Shift provides adequate security.
+✅ **Simple yet effective obfuscation** - Unarchived data appears broken, making casual inspection difficult. Combining XOR, NOT, and Bit Shift provides adequate security.
 
 ✅ **Lightweight and fast** - Since it follows RLE principles, the processing is quick.
 
 ✅ **Easy to understand** - Great for beginners learning about file manipulation.
 
-✅ **간단하지만 효과적인 난독화** - 분할된 파일은 깨진 것처럼 보이므로 단순한 확인으로는 원본을 알기 어렵습니다. XOR, NOT, Bit Shift가 합리적인 보안을 제공합니다.
+✅ **간단하지만 효과적인 난독화** - 압축 해제된 파일은 깨진 것처럼 보이므로 단순한 확인으로는 원본을 알기 어렵습니다. XOR, NOT, Bit Shift가 합리적인 보안을 제공합니다.
 
-✅ **XOR, NOT, Bit Shift 조합으로 데이터 흐트리기** 단순하지만 합리적인 수준의 보안을 제공합니다.
 
 ✅ **가볍고 빠름** - RLE 원리를 따르므로 처리 속도가 빠릅니다.
 
