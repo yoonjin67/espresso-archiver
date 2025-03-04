@@ -17,7 +17,7 @@ I hope this program helps beginners like me get a better grasp of programming co
 
 대학에서 C 언어를 배우면서, 실제로 활용할 기회가 적고 C 시스템 함수를 C++ 등에서 호출하는 실습이 많다는 점을 느꼈습니다.
 
-그러던 중, *파일의 데이터를 비트 수와 나열 순서로 나누면 어떨까* 라는 아이디어에서 출발하여 Essosplit을 개발했습니다.
+그러던 중, *파일의 데이터를 비트 수와 나열 순서로 나누면 어떨까* 라는 아이디어에서 출발하여 Espresso Zip을 개발했습니다.
 (아마 결과는 010101010...아니면 10101010...이겠죠.)
 
 나중에 보니 이 방식이 사실상 Run-Length Encoding (RLE)과 동일하다는 걸 깨달았지만, 
