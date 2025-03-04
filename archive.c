@@ -57,10 +57,10 @@ void coffee_extract(const char *fname, FILE *fp) {
         b ^= SUB_XOR_KEY;
         // byte 암호화
 
-        count ^= XOR_KEY;
-        count = (count << SHIFT_BITS) | (count >> (8 - SHIFT_BITS));
-        if (byte_count) count = ~count;
         count ^= SUB_XOR_KEY;
+        count = (count << SHIFT_BITS*2) | (count >> (8 - SHIFT_BITS*2));
+        if (byte_count) count = ~count;
+        count ^= XOR_KEY;
 
         byte_count = !byte_count;
 

@@ -101,10 +101,10 @@ void coffee_recovery_magic(FILE *f_ezip, const char *fname) {
            fread(&count_byte, sizeof(count_byte), 1, f_tmp) == 1) {
 
         // 역연산 수행
-        count_byte ^= SUB_XOR_KEY;
-        if (byte_count) count_byte = ~count_byte;
-        count_byte = (count_byte >> SHIFT_BITS) | (count_byte << (8 - SHIFT_BITS));
         count_byte ^= XOR_KEY;
+        if (byte_count) count_byte = ~count_byte;
+        count_byte = (count_byte >> SHIFT_BITS*2) | (count_byte << (8 - SHIFT_BITS*2));
+        count_byte ^= SUB_XOR_KEY;
 
         data_byte ^= SUB_XOR_KEY;
         if (byte_count) data_byte = ~data_byte;
