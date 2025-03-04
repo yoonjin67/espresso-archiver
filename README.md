@@ -103,9 +103,22 @@ Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
 
 ---
 
+## 🔧 Limitations (한계)
+
+- 여러 파일/디렉토리 구조를 압축하지 못함(Cannot archive multiple files, or directories)
+- zlib를 활용해 압축 속도나 효율이 평이함(Compression is not enough efficient: identical to zlib's performance)
+- 프로그램 구조가 지나치게 단순함.(Program structure is way-too-simple)
+
+Frankly, its size and quality is similar to program examples in Highschool(or Secondary School) IT textbooks.
+Actual development period was less than a week.
+사실 이 프로그램의 크기나 질로 봤을 때 고등학교 정보 책 정도에 있을 수준입니다.
+실제로 개발 자체도 1주일 정도 걸렸고요.
+
+
 ## 🔧 Future Improvements (향후 개선점)
 
 - Support for different file types and formats (다양한 파일 포맷 지원)
+- Support for multiple files/directory archive (여러 파일, 디렉토리 압축 지원)
 - Customizable obfuscation methods (사용자 정의 난독화 기법 추가)
 - Performance optimizations (성능 최적화)
 
