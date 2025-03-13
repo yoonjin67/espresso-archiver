@@ -68,21 +68,21 @@ This will generate an archive:
 
 Espresso Zip follows a simple RLE-like approach:
 
-for each RLE Bytes, with different XOR keys(each step's sequence differs for run and length)
-    1. XOR encryption → XOR conversion with key A
-    2. apply bit negation (NOT operation)
-    3. apply Bit Shift operation → Shuffle data
-    4. encrypt XOR with key B
-finally compress (zlib Deflate) and save with *.ezip extension
+1. for each RLE Bytes, with different XOR keys(each step's sequence differs for run and length)
+    1.1. XOR encryption → XOR conversion with key A
+    1.2. apply bit negation (NOT operation)
+    1.3. apply Bit Shift operation → Shuffle data
+    1.4. encrypt XOR with key B
+2. finally compress (zlib Deflate) and save with *.ezip extension
 
 Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
 
-각각의 RLE 바이트에 대해  서로 다른 XOR 키들로 반복(순서는 길이와 RUN 바이트에 대해 다름):
-    1. XOR 암호화 → 키 A를 이용해 XOR 변환
-    2. 비트 부정 (NOT 연산) 적용
-    3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
-    4. 키 B로 XOR 암호화
-최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
+1. 각각의 RLE 바이트에 대해  서로 다른 XOR 키들로 반복(순서는 길이와 RUN 바이트에 대해 다름):
+    1.1. XOR 암호화 → 키 A를 이용해 XOR 변환
+    1.2. 비트 부정 (NOT 연산) 적용
+    1.3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
+    1.4. 키 B로 XOR 암호화
+2. 최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
 
 
 ---
