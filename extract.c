@@ -4,6 +4,13 @@
 #include <zlib.h>
 #include<gperftools/tcmalloc.h>
 
+int XOR_KEYS[97] = 
+{
+389, 379, 67, 347, 431, 491, 19, 499, 107, 113, 229, 307, 503, 71, 461, 179, 397, 2, 11, 509, 103, 281, 29, 373, 337, 353, 7, 317, 359, 479, 311, 421, 271, 443, 457, 157, 227, 61, 59, 41, 97, 139, 31, 109, 37, 43, 251, 199, 263, 3, 151, 409, 367, 191, 127, 463, 197, 269, 313, 17, 13, 163, 137, 181, 211, 167, 467, 487, 433, 331, 349, 101, 239, 383, 79, 53, 223, 73, 83, 5, 277, 193, 23, 47, 131, 401, 233, 149, 439, 449, 419, 89, 173, 241, 257, 293, 283
+};
+
+
+
 const char* MAGIC = "ESPL";
 
 void *tc_malloc_alloc(void *opaque, unsigned items, unsigned size) {
@@ -101,15 +108,20 @@ void coffee_recovery_magic(FILE *f_ezip, const char *fname) {
            fread(&count_byte, sizeof(count_byte), 1, f_tmp) == 1) {
 
         // 역연산 수행
-        count_byte ^= XOR_KEY;
-        if (byte_count) count_byte = ~count_byte;
-        count_byte = (count_byte >> SHIFT_BITS*2) | (count_byte << (8 - SHIFT_BITS*2));
-        count_byte ^= SUB_XOR_KEY;
+        for(int rep = 1; rep < 97; rep++) {
+            count_byte ^= XOR_KEYS[rep];
+            if (byte_count) count_byte = ~count_byte;
+            count_byte = (count_byte >> SHIFT_BITS*2) | (count_byte << (8 - SHIFT_BITS*2));
+            count_byte ^= XOR_KEYS[rep-1];
+        }
 
-        data_byte ^= SUB_XOR_KEY;
-        if (byte_count) data_byte = ~data_byte;
-        data_byte = (data_byte >> SHIFT_BITS) | (data_byte << (8 - SHIFT_BITS));
-        data_byte ^= XOR_KEY;
+
+        for(int rep = 95; rep >= 0; rep--) {
+            if (byte_count) data_byte = ~data_byte;
+            data_byte ^= XOR_KEYS[rep+1];
+            data_byte = (data_byte >> SHIFT_BITS) | (data_byte << (8 - SHIFT_BITS));
+            data_byte ^= XOR_KEYS[rep];
+        }
 
         byte_count = !byte_count;
 

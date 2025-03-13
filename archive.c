@@ -4,6 +4,12 @@
 #include <zlib.h>
 #include <gperftools/tcmalloc.h>
 
+int XOR_KEYS[97] = 
+{
+389, 379, 67, 347, 431, 491, 19, 499, 107, 113, 229, 307, 503, 71, 461, 179, 397, 2, 11, 509, 103, 281, 29, 373, 337, 353, 7, 317, 359, 479, 311, 421, 271, 443, 457, 157, 227, 61, 59, 41, 97, 139, 31, 109, 37, 43, 251, 199, 263, 3, 151, 409, 367, 191, 127, 463, 197, 269, 313, 17, 13, 163, 137, 181, 211, 167, 467, 487, 433, 331, 349, 101, 239, 383, 79, 53, 223, 73, 83, 5, 277, 193, 23, 47, 131, 401, 233, 149, 439, 449, 419, 89, 173, 241, 257, 293, 283
+};
+
+
 void *tcmalloc_alloc(void *opaque, unsigned items, unsigned size) {
     return tc_malloc(items * size);
 }
@@ -51,16 +57,19 @@ void coffee_extract(const char *fname, FILE *fp) {
         }
 
         // 간단한 RLE 구현을 위해 count 횟수 계산
-        b ^= XOR_KEY;
-        b = (b << SHIFT_BITS) | (b >> (8 - SHIFT_BITS));
-        if (byte_count) b = ~b;
-        b ^= SUB_XOR_KEY;
+        for(int rep = 0; rep < 96; rep++) {
+            b ^= XOR_KEYS[rep];
+            b = (b << SHIFT_BITS) | (b >> (8 - SHIFT_BITS));
+            b^=XOR_KEYS[rep+1];
+            if (!byte_count) b = ~b;
+        }
         // byte 암호화
-
-        count ^= SUB_XOR_KEY;
-        count = (count << SHIFT_BITS*2) | (count >> (8 - SHIFT_BITS*2));
-        if (byte_count) count = ~count;
-        count ^= XOR_KEY;
+        for(int rep = 96; rep >= 1; rep--) {
+            count ^= XOR_KEYS[rep-1];
+            count = (count << SHIFT_BITS*2) | (count >> (8 - SHIFT_BITS*2));
+            if (byte_count) count = ~count;
+            count ^= XOR_KEYS[rep];
+        }
 
         byte_count = !byte_count;
 

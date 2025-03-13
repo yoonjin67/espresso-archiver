@@ -68,25 +68,26 @@ This will generate an archive:
 
 Espresso Zip follows a simple RLE-like approach:
 
-1. XOR encryption → XOR conversion with key A
-2. apply bit negation (NOT operation)
-3. apply Bit Shift operation → Shuffle data
-4. encrypt XOR with key B
-4. finally compress (zlib Deflate) and save with *.ezip extension
+for each RLE Bytes, with different XOR keys(each step's sequence differs for run and length)
+    1. XOR encryption → XOR conversion with key A
+    2. apply bit negation (NOT operation)
+    3. apply Bit Shift operation → Shuffle data
+    4. encrypt XOR with key B
+finally compress (zlib Deflate) and save with *.ezip extension
 
 Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
 
-
-1. XOR 암호화 → 키 A를 이용해 XOR 변환
-2. 비트 부정 (NOT 연산) 적용
-3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
-4. 키 B로 XOR 암호화
-4. 최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
+각각의 RLE 바이트에 대해  서로 다른 XOR 키들로 반복(순서는 길이와 RUN 바이트에 대해 다름):
+    1. XOR 암호화 → 키 A를 이용해 XOR 변환
+    2. 비트 부정 (NOT 연산) 적용
+    3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
+    4. 키 B로 XOR 암호화
+최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
 
 
 ---
 
-## 📌 Why Use Essosplit? (Essosplit의 특징)
+## 📌 Why Use Espresso Zip? (Espresso Zip의 특징)
 
 ✅ **Simple yet effective obfuscation** - Unarchived data appears broken, making casual inspection difficult. Combining XOR, NOT, and Bit Shift provides adequate security.
 
