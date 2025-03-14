@@ -57,18 +57,21 @@ void coffee_extract(const char *fname, FILE *fp) {
         }
 
         // 간단한 RLE 구현을 위해 count 횟수 계산
-        for(int rep = 0; rep < 96; rep++) {
+        for(int rep = 0; rep < 95; rep++) {
             b ^= XOR_KEYS[rep];
+            b ^= XOR_KEYS[rep+2];
             b = (b << SHIFT_BITS) | (b >> (8 - SHIFT_BITS));
             b^=XOR_KEYS[rep+1];
             if (!byte_count) b = ~b;
         }
         // byte 암호화
-        for(int rep = 96; rep >= 1; rep--) {
+        for(int rep = 96; rep >= 3; rep--) {
             count ^= XOR_KEYS[rep-1];
+            count ^= XOR_KEYS[rep-2];
             count = (count << SHIFT_BITS*2) | (count >> (8 - SHIFT_BITS*2));
             if (byte_count) count = ~count;
             count ^= XOR_KEYS[rep];
+            count ^= XOR_KEYS[rep-3];
         }
 
         byte_count = !byte_count;

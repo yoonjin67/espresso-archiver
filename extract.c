@@ -108,18 +108,21 @@ void coffee_recovery_magic(FILE *f_ezip, const char *fname) {
            fread(&count_byte, sizeof(count_byte), 1, f_tmp) == 1) {
 
         // 역연산 수행
-        for(int rep = 1; rep < 97; rep++) {
+        for(int rep = 3; rep < 97; rep++) {
+            count_byte ^= XOR_KEYS[rep-3];
             count_byte ^= XOR_KEYS[rep];
             if (byte_count) count_byte = ~count_byte;
             count_byte = (count_byte >> SHIFT_BITS*2) | (count_byte << (8 - SHIFT_BITS*2));
+            count_byte ^= XOR_KEYS[rep-2];
             count_byte ^= XOR_KEYS[rep-1];
         }
 
 
-        for(int rep = 95; rep >= 0; rep--) {
-            if (byte_count) data_byte = ~data_byte;
+        for(int rep = 94; rep >= 0; rep--) {
+            if (!byte_count) data_byte = ~data_byte;
             data_byte ^= XOR_KEYS[rep+1];
             data_byte = (data_byte >> SHIFT_BITS) | (data_byte << (8 - SHIFT_BITS));
+            data_byte ^= XOR_KEYS[rep+2];
             data_byte ^= XOR_KEYS[rep];
         }
 
