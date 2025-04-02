@@ -12,8 +12,7 @@ void coffee_recovery_magic(FILE *f_essp, const char *fname);
 void original_file_close(const char *fname, FILE *f);
 
 #define SHIFT_BITS 3  // 비트 시프트 크기
-#define XOR_KEY 0xE5  // XOR 암호화 키
-#define SUB_XOR_KEY 0x71
+#define XOR_LEN   256
 #define MAGIC_LEN 4
 // --암호화 키 관련 코드 구현 종료
 

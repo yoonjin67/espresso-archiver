@@ -26,7 +26,6 @@ I hope this program helps beginners like me get a better grasp of programming co
 
 이 프로그램이 저와 같은 프로그래밍 입문자들에게 도움이 되었으면 좋겠습니다.
 
-
 ---
 
 ## 🛠 Installation & Usage | 설치 및 사용법
@@ -74,9 +73,7 @@ Espresso Zip follows a simple RLE-like approach:
     1.2. apply bit negation (NOT operation)
     1.3. apply Bit Shift operation → Shuffle data
     1.4. encrypt XOR with key B
-    1.5. By using a byte as index, and XOR keys as S-Box, map a value.
-2. Repeat task 1 to get enough obfuscation
-3. finally compress (zlib Deflate) and save with *.ezip extension
+2. finally compress (zlib Deflate) and save with *.ezip extension
 
 Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
 
@@ -85,9 +82,7 @@ Espresso Zip은 단순한 RLE 변형 방식으로 동작합니다:
     1.2. 비트 부정 (NOT 연산) 적용
     1.3. 비트 쉬프트 (Bit Shift) 연산 → 데이터 흐트리기
     1.4. 키 B로 XOR 암호화
-    1.5. XOR 키 배열을 S-Box처럼 사용해 바이트 매핑
-2. 충분한 난독화를 얻을 때까지 1을 반복
-3. 최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
+2. 최종적으로 압축 (zlib Deflate) 후 *.ezip 확장자로 저장
 
 
 ---
@@ -119,12 +114,6 @@ Frankly, its size and quality is similar to program examples in Highschool(or Se
 Actual development period was less than a week.
 사실 이 프로그램의 크기나 질로 봤을 때 고등학교 정보 책 정도에 있을 수준입니다.
 실제로 개발 자체도 1주일 정도 걸렸고요.
-
-+ Sample Data: README.md
-+ Pattern Similarity in .esso: 0.0024
-+ File Concordance in .esso: 0.0026
-+ Shannon Entropy in .esso: 7.8914 bits per byte
- 
 
 
 ## 🔧 Future Improvements (향후 개선점)
